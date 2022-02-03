@@ -164,7 +164,7 @@ function getBgColor(attempt, i, cell) {
 }
 
 function show_win_pop_up (won) {
-  let img_name = won ? 'win' : 'fou-rire';
+  let img_name = won ? 'attention' : 'fou-rire';
   let txt = won ? history.length + "/" + attempts_max + " essais" : 'Alors on est nul ?';
 
   document.getElementById('overlay').style.display = 'block';
