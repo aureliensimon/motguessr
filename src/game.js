@@ -12,6 +12,13 @@ let delay = 250;
 
 let grid = document.getElementById('grid');
 window.addEventListener('keydown', handleKeyDown);
+window.addEventListener('input', test);
+
+
+function test (e) {
+  console.log(e);
+  document.getElementById('test-1').innerText = e.data;
+}
 
 function startGame () {
   document.getElementById('foo').focus();
@@ -34,8 +41,6 @@ function startGame () {
 startGame();
 
 function handleKeyDown(e) {
-  document.getElementById('test-1').innerText = e.key;
-  document.getElementById('test-2').innerText = e.which;
   if (!end_game) {
     let letter = e.key.toLowerCase()
     if (letter === 'enter') {
