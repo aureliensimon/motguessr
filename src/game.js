@@ -11,17 +11,27 @@ let parcours;
 let delay = 250;
 
 let grid = document.getElementById('grid');
-window.addEventListener('keydown', handleKeyDown);
-window.addEventListener('input', test);
+window.addEventListener('keydown', function(e) { handleKeyDown(e, 'keydown'); } );
+window.addEventListener('input', function(e) { handleKeyDown(e, 'input'); });
 
+$(document).ready(function() {
+  $('#putain').click(function(e){ $(this).focus(); });
 
-function test (e) {
-  console.log(e);
-  document.getElementById('test-1').innerText = e.data;
-}
+  $('#grid').click(function(e) {
+      $('#putain').trigger('click');
+  });
+});
+
+document.getElementById('clear-button').addEventListener('click', function () {
+  $('#putain').value = ''
+  $('#clear-buffer').focus()
+  $('#putain').focus()
+})
 
 function startGame () {
-  document.getElementById('foo').focus();
+
+  document.getElementById('putain').focus();
+
   let randomIndex = Math.floor(Math.random() * DICTIONNAIRE.length);
   secret = DICTIONNAIRE[randomIndex];
   currentAttempt = secret[0];
@@ -40,9 +50,24 @@ function startGame () {
 }
 startGame();
 
-function handleKeyDown(e) {
+
+function handleKeyDown(e, type) {
+  document.getElementById("clear-button").click();
+
   if (!end_game) {
-    let letter = e.key.toLowerCase()
+    let letter = '';
+
+    if (type === 'input') {
+      letter = String.fromCharCode(e.target.value.charAt(e.target.selectionStart - 1).charCodeAt() - 32).toLowerCase();
+    }
+    if (type === 'keydown') {
+      if (e.which === 8) {
+        letter = 'backspace';
+      } else if (e.which === 13) {
+        letter = 'enter';
+      }
+    }
+
     if (letter === 'enter') {
       if (currentAttempt.length < secret.length) {
         err_msg('Mot trop court.');
@@ -71,6 +96,7 @@ function handleKeyDown(e) {
       }
     }
 
+    document.getElementById('putain').value = '';
     updateGrid(end_game);
   }
 }

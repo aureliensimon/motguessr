@@ -134,3 +134,18 @@ td {
     margin: 30px auto;
     color:#f3778e;
 }
+
+#putain, #clear-buffer {
+    color: #22252a;
+    background-color: #22252a;
+    outline: none;
+    border: 0;
+}
+#putain:focus {
+    outline: none;
+    border: 0;
+}
+
+#clear-button {
+    visibility: hidden;
+}
