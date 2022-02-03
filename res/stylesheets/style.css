@@ -30,15 +30,16 @@ body {
     justify-content: center;
 }
 
-#button-start {
+.button-page {
     margin: 50px auto;
     width: 25vw;
     padding: 10px;
     border-radius: 50px;
     border: 3px solid var(--couleur-fond-grille);
     background-color: var(--couleur-fond-grille);
+    text-align: center;
 }
-#button-start:hover {
+.button-page:hover {
     cursor: pointer;
     color: var(--couleur-fond-grille);
     background-color: white;
@@ -89,6 +90,7 @@ td {
     left: 0;
     background: rgba(0,0,0,0.8);
     display: none;
+    overflow-y: auto;
 }
 
 #pop-up-win {

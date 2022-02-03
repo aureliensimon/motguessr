@@ -187,3 +187,8 @@ function err_msg (msg) {
 function close_err_msg () {
   document.getElementById('err-msg').style.visibility = 'hidden';
 }
+
+function googleit () {
+  let url = 'https://www.google.com/search?q=definir+';
+  window.open(url + secret.toLowerCase(), '_blank').focus();
+}
