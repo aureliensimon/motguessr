@@ -1,22 +1,36 @@
 'use strict'
 
-let randomIndex = Math.floor(Math.random() * DICTIONNAIRE.length);
-let secret = DICTIONNAIRE[randomIndex];
-secret = "VOITURE";
-
+let secret;
 let attempts_max = 6;
-let currentAttempt = secret[0];
-let history = []
-let end_game = false;
-let force_letter = false;
-let guessed_letters = [];
-let not_really_guessed_letters = [];
-let parcours = "";
+let currentAttempt = '';
+let history;
+let end_game;
+let force_letter;
+let guessed_letters;
+let parcours;
+let delay = 250;
 
 let grid = document.getElementById('grid');
-buildGrid();
-updateGrid(false);
 window.addEventListener('keydown', handleKeyDown);
+
+function startGame () {
+  let randomIndex = Math.floor(Math.random() * DICTIONNAIRE.length);
+  secret = DICTIONNAIRE[randomIndex];
+  currentAttempt = secret[0];
+  history = [];
+  guessed_letters = [];
+  end_game = false;
+  force_letter = false;
+  parcours = "";
+  
+  grid.innerHTML = '';
+  buildGrid();
+
+  updateGrid(false);
+
+  document.getElementById('button-start').style.visibility = 'hidden';
+}
+startGame();
 
 function handleKeyDown(e) {
   if (!end_game) {
@@ -30,12 +44,10 @@ function handleKeyDown(e) {
         err_msg('Mot invalide.');
         return
       }
-      if (currentAttempt === secret) {
-          setTimeout(show_win_pop_up, 1000);
-          end_game = true;
-      } else if (history.length >= attempts_max - 1) {
-          document.getElementById('status').innerText = secret;
-          end_game = true;
+      if (currentAttempt === secret || history.length >= attempts_max - 1) {
+        let won = currentAttempt === secret;
+        setTimeout(() => show_win_pop_up(won), 1000);
+        end_game = true;
       }
       history.push(currentAttempt);
       currentAttempt = secret[0];
@@ -124,8 +136,9 @@ function drawAttempt(row, attempt, isCurrent) {
 }
 
 function getBgColor(attempt, i, cell) {
-  let correctLetter = secret[i]
-  let attemptLetter = attempt[i]
+  let correctLetter = secret[i];
+  let attemptLetter = attempt[i];
+
   if (
     attemptLetter === undefined ||
     secret.indexOf(attemptLetter) === -1
@@ -150,13 +163,19 @@ function getBgColor(attempt, i, cell) {
   }
 }
 
-function show_win_pop_up () {
+function show_win_pop_up (won) {
+  let img_name = won ? 'win' : 'fou-rire';
+  let txt = won ? history.length + "/" + attempts_max + " essais" : 'Alors on est nul ?';
+
   document.getElementById('overlay').style.display = 'block';
   document.getElementById('pop-up-parcours').innerText = parcours;
-  document.getElementById('pop-up-tries').innerText = history.length + "/" + attempts_max + " essais";
+  document.getElementById('pop-up-logo').src = '../res/img/' + img_name + '.png';
+  document.getElementById('pop-up-tries').innerText = txt;
+  document.getElementById('pop-up-mot').innerText = secret;
 }
 function close_win_pop_up () {
   document.getElementById('overlay').style.display = 'none';
+  document.getElementById('button-start').style.visibility = 'visible';
 }
 
 function err_msg (msg) {

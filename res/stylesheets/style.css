@@ -30,6 +30,20 @@ body {
     justify-content: center;
 }
 
+#button-start {
+    margin: 50px auto;
+    width: 25vw;
+    padding: 10px;
+    border-radius: 50px;
+    border: 3px solid var(--couleur-fond-grille);
+    background-color: var(--couleur-fond-grille);
+}
+#button-start:hover {
+    cursor: pointer;
+    color: var(--couleur-fond-grille);
+    background-color: white;
+}
+
 table {
     border-collapse: collapse;
     background: var(--couleur-fond-grille) !important;
