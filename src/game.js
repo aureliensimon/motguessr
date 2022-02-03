@@ -14,6 +14,7 @@ let grid = document.getElementById('grid');
 window.addEventListener('keydown', handleKeyDown);
 
 function startGame () {
+  document.getElementById('foo').focus();
   let randomIndex = Math.floor(Math.random() * DICTIONNAIRE.length);
   secret = DICTIONNAIRE[randomIndex];
   currentAttempt = secret[0];
