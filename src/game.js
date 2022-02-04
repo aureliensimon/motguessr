@@ -226,3 +226,13 @@ function googleit () {
   let url = 'https://www.google.com/search?q=definir+';
   window.open(url + secret.toLowerCase(), '_blank').focus();
 }
+
+function showCopie (show) {
+  document.getElementById('pop-up-parcours-copie').style.display = show ? 'block' : 'none';
+}
+
+document.getElementById('pop-up-parcours').addEventListener('click', function () {
+  navigator.clipboard.writeText(parcours);
+  showCopie(true);
+  setTimeout(() => showCopie(false), 1000);
+});

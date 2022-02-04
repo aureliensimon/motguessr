@@ -117,7 +117,7 @@ td {
 }
 
 #pop-up-logo {
-    width: 20vw;
+    width: 25vmax;
     height: auto;
     margin: 0 auto;
 }
@@ -129,10 +129,15 @@ td {
     text-justify: auto;
 }
 
+#pop-up-parcours-copie {
+    display: none;
+    color:lightseagreen;
+}
+
 #err-msg {
     display: block;
     visibility: hidden;
-    margin: 5px auto;
+    margin-bottom: 25px;
     color:#f3778e;
 }
 
