@@ -15,7 +15,12 @@
     <title>motus</title>
 </head>
 <body>
-    <div id="title"><span>MOTUS</span></div>
+    <div id="title" onclick="location.reload();"><span>MOTUS</span></div>
+
+    <input type='text' id='putain'></input>
+    <input id="clear-buffer"></input>
+    <button id="clear-button">CLEAR</button>
+    
     <span id="err-msg">ERREUR</span>
     <div id="grid"></div>
     <div class="button-page" id="button-start" onclick="startGame()">rejouer</div>
@@ -30,10 +35,6 @@
         <div class="button-page" onclick="googleit()">définir</div>
         </div>
     </div>
-
-    <input type='text' id='putain'></input>
-    <input id="clear-buffer"></input>
-    <button id="clear-button">CLEAR</button>
     
 </body>
 </html>
